@@ -3,17 +3,14 @@ import "./App.css";
 
 const initialState = {
   fname: "",
+  version: "",
   lname: "",
   enterDate: "",
   email: "",
   password: "",
   matchPassword: "",
   fnameError: "",
-  lnameError: "",
-  emailError: "",
-  passwordError: "",
-  matchPasswordError: "",
-  dateError: ""
+  versionError: ""
 };
 
 class App extends Component {
@@ -36,6 +33,7 @@ class App extends Component {
 
   validation = () => {
     let fnameError = "";
+    let versionError = "";
     let lnameError = "";
     let emailError = "";
     let dateError = "";
@@ -44,7 +42,12 @@ class App extends Component {
     let matchPasswordError = "";
 
     if (!this.state.fname) {
+      //console.log("fname called");
       fnameError = "First Name can't be blank";
+    }
+    if (!this.state.version.match(/^(\d+\.)?(\d+\.)?(\*|\d+)$/g)) {
+      //console.log("called");
+      versionError = "version number not matched";
     }
 
     if (this.state.lname.length < 4) {
@@ -85,6 +88,7 @@ class App extends Component {
     this.setState({
       emailError,
       fnameError,
+      versionError,
       lnameError,
       passwordError,
       dateError,
@@ -93,6 +97,7 @@ class App extends Component {
     if (
       emailError ||
       fnameError ||
+      versionError ||
       lnameError ||
       passwordError ||
       dateError ||
@@ -139,6 +144,17 @@ class App extends Component {
               onChange={this.changeHandler}
             />
             <div className="error">{this.state.dateError}</div>
+          </div>
+          <br />
+          <div>
+            <label>Version : </label>
+            <input
+              type="text"
+              name="version"
+              value={this.state.version}
+              onChange={this.changeHandler}
+            />
+            <div className="error">{this.state.versionError}</div>
           </div>
           <br />
           <div>
