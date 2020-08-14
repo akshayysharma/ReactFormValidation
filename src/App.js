@@ -26,7 +26,6 @@ class App extends Component {
     e.preventDefault();
     const showValidation = this.validation();
     if (showValidation) {
-      console.log(this.state);
       this.setState(initialState);
     }
   };
