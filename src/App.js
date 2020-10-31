@@ -56,6 +56,10 @@ class App extends Component {
     if (!this.state.email.includes("@")) {
       emailError = "invalid email";
     }
+    
+    if (!this.state.email.includes(".")) {
+      emailError = "invalid email";
+    }
 
     let convertedDate =
       time.getFullYear() +
